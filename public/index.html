@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch & Fill</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Fetch & Fill</h1>
+            <span class="counter">3/10 comprados</span>
+        </header>
+
+        <main class="list-container">
+            <div class="list-item completed">
+                <span class="item-name">Manzanas</span>
+                <div class="checkbox"></div>
+            </div>
+            <div class="list-item">
+                <span class="item-name">Leche</span>
+                <div class="checkbox"></div>
+            </div>
+            <div class="list-item">
+                <span class="item-name">Pan</span>
+                <div class="checkbox"></div>
+            </div>
+            <div class="list-item completed">
+                <span class="item-name">Huevos</span>
+                <div class="checkbox"></div>
+            </div>
+            <div class="list-item completed">
+                <span class="item-name">Café</span>
+                <div class="checkbox"></div>
+            </div>
+        </main>
+
+        <button class="fab-button" aria-label="Añadir ítem">+</button>
+    </div>
+
+    <!-- Modal para añadir ítem -->
+    <div class="modal-overlay" id="add-modal">
+        <div class="modal-content">
+            <h2>Nuevo Ítem</h2>
+            <input type="text" id="new-item-input" placeholder="¿Qué deseas agregar?" autocomplete="off">
+            <div class="modal-actions">
+                <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+                <button class="btn-add" id="btn-add">Añadir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
