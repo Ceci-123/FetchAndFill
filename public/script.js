@@ -1,13 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const fabButton = document.querySelector('.fab-button');
+    const fabButton = document.getElementById('btn-add-item');
+    const btnClearAll = document.getElementById('btn-clear-all');
     const listContainer = document.querySelector('.list-container');
     const counterSpan = document.querySelector('.counter');
     
-    // Elementos del modal
+    // Elementos del modal de agregar
     const modalOverlay = document.getElementById('add-modal');
     const inputItem = document.getElementById('new-item-input');
     const btnAdd = document.getElementById('btn-add');
     const btnCancel = document.getElementById('btn-cancel');
+
+    // Elementos del modal de confirmar borrado
+    const confirmModal = document.getElementById('confirm-modal');
+    const btnConfirmClear = document.getElementById('btn-confirm-clear');
+    const btnCancelClear = document.getElementById('btn-cancel-clear');
 
     // Función para actualizar el contador
     const updateCounter = () => {
@@ -77,6 +83,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             addItem();
         }
+    });
+
+    // Abrir modal de confirmar borrado
+    btnClearAll.addEventListener('click', () => {
+        confirmModal.classList.add('active');
+    });
+
+    // Cerrar modal de confirmar borrado
+    const closeConfirmModal = () => {
+        confirmModal.classList.remove('active');
+    };
+
+    btnCancelClear.addEventListener('click', closeConfirmModal);
+
+    // Cerrar al hacer clic fuera del modal de confirmación
+    confirmModal.addEventListener('click', (e) => {
+        if (e.target === confirmModal) {
+            closeConfirmModal();
+        }
+    });
+
+    // Acción de borrar toda la lista
+    btnConfirmClear.addEventListener('click', () => {
+        listContainer.innerHTML = '';
+        updateCounter();
+        closeConfirmModal();
     });
 
     // Actualizar el contador inicialmente al cargar la página
