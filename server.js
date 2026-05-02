@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 3000;
 // Configurar pool de Postgres
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Middleware
