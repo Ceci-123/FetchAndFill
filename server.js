@@ -41,6 +41,7 @@ initDB();
 app.get('/api/items', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM items ORDER BY id ASC');
+        console.log('Items en DB:', result.rows);
         res.json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -50,13 +51,16 @@ app.get('/api/items', async (req, res) => {
 // Añadir un nuevo ítem
 app.post('/api/items', async (req, res) => {
     const { name } = req.body;
+    console.log('Intentando guardar:', name);
     try {
         const result = await pool.query(
             'INSERT INTO items (name) VALUES ($1) RETURNING *',
             [name]
         );
+        console.log('Guardado:', result.rows[0]);
         res.status(201).json(result.rows[0]);
     } catch (err) {
+        console.error('Error en POST:', err.message);
         res.status(500).json({ error: err.message });
     }
 });
