@@ -15,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmClear = document.getElementById('btn-confirm-clear');
     const btnCancelClear = document.getElementById('btn-cancel-clear');
 
+    // Funciones para guardar y cargar datos en LocalStorage
+    const saveData = () => {
+        localStorage.setItem('shoppingList', listContainer.innerHTML);
+    };
+
+    const loadData = () => {
+        const data = localStorage.getItem('shoppingList');
+        if (data) {
+            listContainer.innerHTML = data;
+        }
+    };
+
     // Función para actualizar el contador
     const updateCounter = () => {
         const totalItems = document.querySelectorAll('.list-item').length;
@@ -22,12 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         counterSpan.textContent = `${completedItems}/${totalItems} comprados`;
     };
 
+    // Cargar datos guardados previamente
+    loadData();
+
     // Añadir funcionalidad para marcar/desmarcar elementos de la lista
     listContainer.addEventListener('click', (e) => {
         const listItem = e.target.closest('.list-item');
         if (listItem) {
             listItem.classList.toggle('completed');
             updateCounter();
+            saveData(); // Guardar el nuevo estado (marcado/desmarcado)
         }
     });
 
@@ -72,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newItem.style.animation = null;
             
             updateCounter();
+            saveData(); // Guardar el nuevo ítem
             closeModal();
         }
     };
@@ -108,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnConfirmClear.addEventListener('click', () => {
         listContainer.innerHTML = '';
         updateCounter();
+        saveData(); // Guardar que la lista está vacía
         closeConfirmModal();
     });
 
