@@ -43,12 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar datos desde la base de datos
     const loadData = async () => {
         try {
+            console.log('Cargando datos inicio');
             const response = await fetch('/api/items');
             if (response.ok) {
                 const items = await response.json();
                 listContainer.innerHTML = '';
                 items.forEach(renderItem);
                 updateCounter();
+                console.log('Cargando datos ya cargo');
             }
         } catch (error) {
             console.error('Error cargando los datos:', error);
@@ -113,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch('/api/items', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: itemName.trim() })
+                    body: JSON.stringify({ name: itemName.trim() }),
+                    console.log(' termine de intentar hacer el post')
                 });
                 
                 if (response.ok) {
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderItem(savedItem);
                     updateCounter();
                     closeModal();
+                    console.log('todo salio bien');
                 }
             } catch (error) {
                 console.error('Error añadiendo el ítem:', error);
