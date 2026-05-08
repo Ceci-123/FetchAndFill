@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: itemName.trim() }),
         });
-
+        console.log("Intentando añadir ítem:", itemName.trim());
         if (response.ok) {
           const savedItem = await response.json();
           renderItem(savedItem);
