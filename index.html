@@ -1,67 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fetch & Fill</title>
-    <link rel="stylesheet" href="/public/style.css">
-    <link rel="manifest" href="/public/manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/style.css" />
+    <link rel="manifest" href="/public/manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <!-- El favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="public/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="public/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon-512x512.png"
+    />
+  </head>
+  <body>
     <div class="app-container">
-        <header class="app-header">
-            <h1>Fetch & Fill</h1>
-            <span class="counter">3/10 comprados</span>
-        </header>
+      <header class="app-header">
+        <h1>Fetch & Fill</h1>
+        <span class="counter">3/10 comprados</span>
+      </header>
 
-        <main class="list-container">
-            <!-- La lista se llena dinámicamente con JavaScript -->
-        </main>
+      <main class="list-container">
+        <!-- La lista se llena dinámicamente con JavaScript -->
+      </main>
 
-        <div class="fab-container">
-            <button class="fab-button trash-button" id="btn-clear-all" aria-label="Borrar lista">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="3 6 5 6 21 6"></polyline>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                </svg>
-            </button>
-            <button class="fab-button" id="btn-add-item" aria-label="Añadir ítem">+</button>
-        </div>
+      <div class="fab-container">
+        <button
+          class="fab-button trash-button"
+          id="btn-clear-all"
+          aria-label="Borrar lista"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path
+              d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+            ></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+        </button>
+        <button class="fab-button" id="btn-add-item" aria-label="Añadir ítem">
+          +
+        </button>
+      </div>
     </div>
 
     <!-- Modal para añadir ítem -->
     <div class="modal-overlay" id="add-modal">
-        <div class="modal-content">
-            <h2>Nuevo Ítem</h2>
-            <input type="text" id="new-item-input" placeholder="¿Qué deseas agregar?" autocomplete="off">
-            <div class="modal-actions">
-                <button class="btn-cancel" id="btn-cancel">Cancelar</button>
-                <button class="btn-add" id="btn-add">Añadir</button>
-            </div>
+      <div class="modal-content">
+        <h2>Nuevo Ítem</h2>
+        <input
+          type="text"
+          id="new-item-input"
+          placeholder="¿Qué deseas agregar?"
+          autocomplete="off"
+        />
+        <div class="modal-actions">
+          <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+          <button class="btn-add" id="btn-add">Añadir</button>
         </div>
+      </div>
     </div>
 
     <!-- Modal para confirmar borrado -->
     <div class="modal-overlay" id="confirm-modal">
-        <div class="modal-content">
-            <h2>Borrar lista</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-color); font-size: 1.1rem; line-height: 1.5;">¿Estás seguro de que quieres borrar toda la lista? Esta acción no se puede deshacer.</p>
-            <div class="modal-actions">
-                <button class="btn-cancel" id="btn-cancel-clear">Cancelar</button>
-                <button class="btn-danger" id="btn-confirm-clear">Borrar</button>
-            </div>
+      <div class="modal-content">
+        <h2>Borrar lista</h2>
+        <p
+          style="
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.5;
+          "
+        >
+          ¿Estás seguro de que quieres borrar toda la lista? Esta acción no se
+          puede deshacer.
+        </p>
+        <div class="modal-actions">
+          <button class="btn-cancel" id="btn-cancel-clear">Cancelar</button>
+          <button class="btn-danger" id="btn-confirm-clear">Borrar</button>
         </div>
+      </div>
     </div>
 
-    <script src="script.js?v=1.1"></script>
-</body>
+    <script src="/public/script.js"></script>
+  </body>
 </html>
