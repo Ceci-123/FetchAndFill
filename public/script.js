@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Cargar datos desde la base de datos
   const loadData = async () => {
     try {
-      console.log("Cargando datos inicio");
+      console.log("Cargando datos desde neon db inicio");
       const response = await fetch("/api/items");
       if (response.ok) {
         const items = await response.json();
         listContainer.innerHTML = "";
         items.forEach(renderItem);
         updateCounter();
-        console.log("Cargando datos ya cargo");
+        console.log("Cargando datos desde neon db fin");
       }
     } catch (error) {
       console.error("Error cargando los datos:", error);
@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listItem.classList.toggle("completed");
         updateCounter();
         alert("Hubo un error al actualizar el ítem.");
+        console.log("se actualizaron datos en neon db");
       }
     }
   });
@@ -125,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
           renderItem(savedItem);
           updateCounter();
           closeModal();
-          console.log("todo salio bien");
+          console.log("todo salio bien agregando un item");
         }
       } catch (error) {
         console.error("Error añadiendo el ítem:", error);
