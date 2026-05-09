@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           const savedItem = await response.json();
           renderItem(savedItem);
+          console.log("aca esta agregando desde local");
           updateCounter();
           closeModal();
           console.log("todo salio bien agregando un item");
